@@ -57,7 +57,7 @@ class NewView extends StatelessWidget {
                         child: Text(
                             description!,
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w400,
                                 height: 1.7,
                                 color: ColorTheme.softBlue,
