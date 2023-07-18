@@ -53,11 +53,11 @@ class NewView extends StatelessWidget {
                         ],
                     ),
                     Padding(
-                        padding: const EdgeInsets.only(left: 20, bottom: 20),
+                        padding: const EdgeInsets.only(left: 20, bottom: 20,right: 22),
                         child: Text(
                             description!,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 height: 1.7,
                                 color: ColorTheme.softBlue,
