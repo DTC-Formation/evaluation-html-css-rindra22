@@ -11,7 +11,7 @@ class NewModel{
         ),
         NewModel(
             title: "The Downsides of AI Artistry",
-            description: "What are the possible adverse effects of on-demand AI imgae generation?",
+            description: "What are the possible adverse effects of on-demand AI image generation?",
         ),
         NewModel(
             title: "Is VC Funding Drying Up?",

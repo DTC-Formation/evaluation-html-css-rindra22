@@ -1,13 +1,13 @@
+import 'package:evaluation_flutter_design/model/new_model.dart';
 import 'package:evaluation_flutter_design/ui/color_ui.dart';
 import 'package:flutter/material.dart';
 
 class NewView extends StatelessWidget {
-    final String? title;
-    final String? description;
+    final NewModel? newModel;
     final bool? isLast;
     final bool? isFirst;
 
-    const NewView({Key? key, this.title, this.description, this.isFirst, this.isLast}) : super(key: key);
+    const NewView({Key? key, this.newModel, this.isFirst, this.isLast}) : super(key: key);
     @override
     Widget build(BuildContext context) {
         return Container(
@@ -41,7 +41,7 @@ class NewView extends StatelessWidget {
                             Padding(
                                 padding: const EdgeInsets.only(left: 20, bottom: 10),
                                 child: Text(
-                                    title!,
+                                    newModel!.title!,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
@@ -55,7 +55,7 @@ class NewView extends StatelessWidget {
                     Padding(
                         padding: const EdgeInsets.only(left: 20, bottom: 20,right: 22),
                         child: Text(
-                            description!,
+                            newModel!.description!,
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,

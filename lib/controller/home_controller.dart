@@ -1,6 +1,9 @@
+import 'package:evaluation_flutter_design/model/last_new_model.dart';
 import 'package:evaluation_flutter_design/model/new_model.dart';
 import 'package:evaluation_flutter_design/ui/color_ui.dart';
+import 'package:evaluation_flutter_design/view/last_new_view.dart';
 import 'package:evaluation_flutter_design/view/new_view.dart';
+import 'package:evaluation_flutter_design/view/open_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,6 +11,11 @@ class HomeController extends StatelessWidget {
     HomeController({super.key});
 
     List<NewModel> newLists = NewModel.list;
+    List<LastNewModel> lastNewLists = LastNewModel.list;
+
+    void _openDrawer(BuildContext context) {
+        Scaffold.of(context).openEndDrawer();
+    }
 
     @override
     Widget build(BuildContext context) {
@@ -15,20 +23,27 @@ class HomeController extends StatelessWidget {
             appBar: AppBar(
                 leadingWidth: 45,
                 leading: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                    width: 20,
-                    height: 20,
-                ),
+                    padding: const EdgeInsets.only(left: 10),
+                    child: SvgPicture.asset(
+                        'assets/images/logo.svg',
+                        width: 20,
+                        height: 20,
+                    ),
                 ),
                 actions: [
-                SvgPicture.asset(
-                    'assets/images/icon-menu.svg',
-                    width: 15,
-                    height: 15,
-                ),
-                SizedBox(width: 10),
+                    Builder(
+                        builder: (context) => TextButton(
+                            onPressed: () {
+                                _openDrawer(context);
+                            },
+                            child: SvgPicture.asset(
+                                'assets/images/icon-menu.svg',
+                                width: 15,
+                                height: 15,
+                            ),
+                        ),
+                    ),
+                    SizedBox(width: 10),
                 ],
             ),
 
@@ -100,10 +115,22 @@ class HomeController extends StatelessWidget {
                                         itemCount: newLists.length,
                                         itemBuilder: (context, index) {
                                             return NewView(
-                                                title: newLists[index].title,
-                                                description: newLists[index].description,
+                                                newModel: newLists[index],
                                                 isFirst: index == 0 ? true : false,
                                                 isLast: index == newLists.length - 1 ? true : false,
+                                            );
+                                        },
+                                    ) : Container(),
+
+                                    SizedBox(height: 30),
+
+                                    lastNewLists.length > 0 ? ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: lastNewLists.length,
+                                        itemBuilder: (context, index) {
+                                            return LastNewView(
+                                                lastNewModel: lastNewLists[index],
                                             );
                                         },
                                     ) : Container(),
@@ -112,7 +139,10 @@ class HomeController extends StatelessWidget {
                         ),
                     ],
                 ),
-            )
+            
+            ),
+            endDrawer: RightToLeftDrawer(),
         );
     }
 }
+  
